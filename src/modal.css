@@ -1,0 +1,174 @@
+.modal {
+  position: fixed;
+  top: 5rem;
+  left: 20rem;
+  width: 46rem;
+  height: 30rem;
+  border-radius: 10px;
+  background: #485FAC;
+}
+
+
+
+.modal-main {
+  border-radius: 10px;
+  position: fixed;
+  background: #485FAC;
+  width: 20rem;
+  height: 3rem;
+  top: 40rem;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+div.sprite {
+  background: white;
+  position: absolute;
+  height: 30rem;
+  width: 20rem;
+  border-radius: 10px;
+}
+
+h1 {
+  font-size: 40px;
+  color: black;
+  position: absolute;
+  top: 23rem;
+  left: 5rem;
+
+}
+
+button {
+  font-size: 20px;
+  background: transparent;
+  color: white;
+  border: none;
+  position: absolute;
+  top: .5rem;
+  left: 5.5rem;
+  height: 2rem;
+  width: 80px;
+  white-space: nowrap;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+button:focus {
+  outline: none;
+}
+
+.display-block {
+  display: block;
+}
+
+.display-none {
+  display: none;
+}
+
+div.white-bar {
+  position: absolute;
+  height: 4rem;
+  width: 21rem;
+  background: white;
+  border-radius: 10px;
+}
+
+div.white-bar.one {
+  top: 4rem;
+  left: 22rem;
+}
+
+div.white-bar.two {
+  top: 10rem;
+  left: 22rem;
+}
+
+div.white-bar.three {
+  top: 16rem;
+  left: 22rem;
+}
+
+div.white-bar.four {
+  top: 22rem;
+  left: 22rem;
+  width: 10rem;
+}
+
+div.white-bar.five {
+  top: 22rem;
+  left: 33rem;
+  width: 12.5rem;
+}
+
+div.blue-bar {
+
+  position: absolute;
+  height: 4rem;
+  width: 7rem;
+  background: rgb(66, 102, 221);
+  border-radius: 10px;
+}
+
+div.blue-bar.one {
+  top: 4rem;
+  left: 22rem;
+}
+
+div.blue-bar.two {
+  top: 10rem;
+  left: 22rem;
+}
+
+div.blue-bar.three {
+  top: 16rem;
+  left: 22rem;
+}
+
+div.blue-bar.four {
+  top: 22rem;
+  left: 22rem;
+  width: 5rem;
+}
+
+div.blue-bar.five {
+  top: 22rem;
+  left: 33rem;
+  width: 5rem;
+}
+
+h2 {
+  font-size: 30px;
+  position: absolute;
+  top: -1rem;
+  left: 1rem;
+  color: white;
+}
+
+h3 {
+
+  color: white;
+}
+
+h4 {
+  position: absolute;
+  top: -2.5rem;
+  left: 7.5rem;
+  font-size: 35px;
+}
+
+h4.move {
+  white-space: nowrap;
+}
+
+div.white-bar.four>h4,
+div.white-bar.five>h4 {
+  margin-left: -1rem;
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1139px) {
+  .modal {
+    left: 10rem;
+  }
+}

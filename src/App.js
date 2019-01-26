@@ -1,45 +1,87 @@
 import React, { Component } from "react";
 import PokemonLogo from "./images/pokemonlogo.png";
-
+import Modal from "./modal";
 import "./App.css";
 
 class App extends Component {
-  token = null;
   state = {
+    show: false,
     query: "",
-    pokemon: []
+    pokemon: {
+      xp: 0,
+      type: "",
+      move: "",
+      height: 0,
+      weight: 0,
+      img: ""
+    }
   };
 
-  onChange = e => {
-    const { value } = e.target;
-    this.setState({
-      query: value
-    });
-    this.search(value);
+  showModal = () => {
+    this.setState({ show: true });
   };
 
-  search = query => {
-    const url = `https://pokeapi.co/api/v2/pokemon/${query}`;
-    const token = {};
-    this.token = token;
-    fetch(url)
+  hideModal = () => {
+    this.setState({ show: false });
+    document.querySelector("input").value = "";
+  };
+
+  getPokemon = () => {
+    let lower = this.state.query.toLowerCase();
+    fetch(`https://pokeapi.co/api/v2/pokemon/${lower}`)
       .then(res => res.json())
       .then(data => {
-        if (this.token === token) {
-          this.setState({ pokemon: data });
-        }
+        this.setState({
+          pokemon: {
+            xp: data["base_experience"],
+            type: data.types[0].type.name,
+            move: data.abilities[0].ability.name,
+            height: data.height,
+            weight: data.weight,
+            img: data.sprites["front_shiny"]
+          },
+          show: true
+        });
       });
   };
 
-  componentDidMount() {
-    this.search("");
-  }
+  handleInput = e => {
+    e.preventDefault();
+    this.setState(
+      {
+        query: this.search.value,
+        show: true
+      },
+      () => {
+        if (this.state.query && this.state.query.length > 1) {
+          this.getPokemon();
+        }
+      }
+    );
+  };
 
   render() {
     return (
       <div className="App">
         <img src={PokemonLogo} alt="" />
-        <div className="search-form" />
+        <form onSubmit={this.handleInput}>
+          <input
+            type="text"
+            placeholder="Search for Pokemon..."
+            ref={input => (this.search = input)}
+          />
+        </form>
+        <Modal
+          xp={this.state.pokemon.xp}
+          type={this.state.pokemon.type}
+          move={this.state.pokemon.move}
+          height={this.state.pokemon.height}
+          weight={this.state.pokemon.weight}
+          img={this.state.pokemon.img}
+          show={this.state.show}
+          handleClose={this.hideModal}
+          name={this.state.query}
+        />
       </div>
     );
   }
