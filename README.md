@@ -1,4 +1,4 @@
-# PokeSeach
+# PokeSearch
 
 Search for your favorite pokemon!
 Built with React and uses the PokeApi
