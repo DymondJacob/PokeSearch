@@ -1,25 +1,45 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import PokemonLogo from "./images/pokemonlogo.png";
+
+import "./App.css";
 
 class App extends Component {
+  token = null;
+  state = {
+    query: "",
+    pokemon: []
+  };
+
+  onChange = e => {
+    const { value } = e.target;
+    this.setState({
+      query: value
+    });
+    this.search(value);
+  };
+
+  search = query => {
+    const url = `https://pokeapi.co/api/v2/pokemon/${query}`;
+    const token = {};
+    this.token = token;
+    fetch(url)
+      .then(res => res.json())
+      .then(data => {
+        if (this.token === token) {
+          this.setState({ pokemon: data });
+        }
+      });
+  };
+
+  componentDidMount() {
+    this.search("");
+  }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <img src={PokemonLogo} alt="" />
+        <div className="search-form" />
       </div>
     );
   }
